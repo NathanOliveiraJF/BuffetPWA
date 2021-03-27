@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buffet", "Buffet\Buffet.csproj", "{01F9EFA3-A50B-40C5-A90C-5664330F1DBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01F9EFA3-A50B-40C5-A90C-5664330F1DBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01F9EFA3-A50B-40C5-A90C-5664330F1DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01F9EFA3-A50B-40C5-A90C-5664330F1DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01F9EFA3-A50B-40C5-A90C-5664330F1DBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61810754-BC22-431E-9084-421F66E799D9}
+	EndGlobalSection
+EndGlobal
