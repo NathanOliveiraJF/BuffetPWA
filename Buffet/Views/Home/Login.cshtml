@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container">
+    <div class="row justify-content-center align-items-center" style="height: 80vh">
+        <div class="col-md-5 border  rounded-lg shadow-lg p-4" >
+            <p class="h2 text-center">Login</p>
+            <form>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control  btn-lg btn-block py-4" id="email" aria-describedby="emailHelp" placeholder="Email...">
+                </div>
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" class="form-control btn-lg btn-block  py-4" id="senha" placeholder="Senha...">
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block mt-3">Entrar</button>
+                <a class="nav-link  text-primary text-center border-bottom pb-3" asp-area="" asp-controller="Home" asp-action="RecuperaConta">Recuperação de Conta</a>
+                <a class="nav-link text-dark text-center mt-3" asp-area="" asp-controller="Home" asp-action="CriarConta">
+                    <span class="btn btn-success mt-3 py-2 btn-lg w-50">Criar conta</span>
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+
