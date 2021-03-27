@@ -23,12 +23,18 @@ namespace Buffet.Controllers
             return View();
         }
 
-        public IActionResult Login()
+
+        public IActionResult Privacy()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Terms()
+        {
+            return View();
+        }
+
+        public IActionResult Register()
         {
             return View();
         }
