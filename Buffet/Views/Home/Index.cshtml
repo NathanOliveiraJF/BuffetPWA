@@ -15,7 +15,10 @@
                     <label for="senha">Senha</label>
                     <input type="password" class="form-control btn-lg btn-block  py-4" id="senha" placeholder="Senha...">
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg btn-block mt-3">Entrar</button>
+                <!--<button type="submit" class="btn btn-primary btn-lg btn-block mt-3">Entrar</button>-->
+                <a class="nav-link text-dark text-center mt-3" asp-area="" asp-controller="Admin" asp-action="Index">
+                    <span class="btn btn-primary mt-3 py-2 btn-lg  btn-block">Entrar</span>
+                </a>
                 <a class="nav-link  text-primary text-center border-bottom pb-3" asp-area="" asp-controller="Home" asp-action="Recovery">Recuperação de Conta</a>
                 <a class="nav-link text-dark text-center mt-3" asp-area="" asp-controller="Home" asp-action="Register">
                     <span class="btn btn-success mt-3 py-2 btn-lg w-50">Criar conta</span>
