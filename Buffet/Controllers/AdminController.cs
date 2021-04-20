@@ -1,4 +1,5 @@
-﻿using Buffet.Models;
+﻿using Buffet.Data;
+using Buffet.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,11 +12,11 @@ namespace Buffet.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly DataBaseContext _dbContext;
 
-        public AdminController(ILogger<HomeController> logger)
+        public AdminController(DataBaseContext dbContext)
         {
-            _logger = logger;
+            _dbContext = dbContext;
         }
 
         public IActionResult Index()
@@ -35,13 +36,6 @@ namespace Buffet.Controllers
         public IActionResult Session()
         {
             return View();
-        }
-
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
