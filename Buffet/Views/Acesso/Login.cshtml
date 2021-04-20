@@ -1,24 +1,38 @@
-﻿@{
+﻿@model Buffet.ViewModels.LoginViewModel;
+
+@{
     ViewData["Title"] = "Login";
 }
 
 <div class="container">
     <div class="row justify-content-center align-items-center" style="height: 80vh">
-        <div class="col-md-5 border  rounded-lg shadow-lg p-4" >
+        <div class="col-md-5 border  rounded-lg shadow-lg p-4">
             <p class="h2 text-center">Login</p>
-            <form>
+            @if (Model.ErrorLogin != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @Model.ErrorLogin
+                </div>
+            }
+            @if (Model.Mensagem != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @Model.Mensagem
+                </div>
+            }
+            <form method="post" action="/Acesso/Login">
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control  btn-lg btn-block py-4" id="email" aria-describedby="emailHelp" placeholder="Email...">
+                    <input type="email" class="form-control  btn-lg btn-block py-4" id="email" name="email" aria-describedby="emailHelp" placeholder="Email...">
                 </div>
                 <div class="form-group">
                     <label for="senha">Senha</label>
-                    <input type="password" class="form-control btn-lg btn-block  py-4" id="senha" placeholder="Senha...">
+                    <input type="password" class="form-control btn-lg btn-block  py-4" id="senha" name="senha" placeholder="Senha...">
                 </div>
-                
-                <a class="nav-link text-dark text-center mt-3" asp-area="" asp-controller="Admin" asp-action="Index">
-                    <span class="btn btn-primary mt-3 py-2 btn-lg  btn-block">Entrar</span>
-                </a>
+
+
+                <input type="submit" class="btn btn-primary mt-3 py-2 btn-lg  btn-block" value="Entrar" />
+
                 <a class="nav-link  text-primary text-center border-bottom pb-3" asp-area="" asp-controller="Acesso" asp-action="Recovery">Recuperação de Conta</a>
                 <a class="nav-link text-dark text-center mt-3" asp-area="" asp-controller="Acesso" asp-action="Register">
                     <span class="btn btn-success mt-3 py-2 btn-lg w-50">Criar conta</span>
