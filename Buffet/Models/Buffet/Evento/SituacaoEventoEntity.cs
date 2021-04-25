@@ -7,10 +7,9 @@ namespace Buffet.Models.Buffet.Situacao
 {
     public class SituacaoEventoEntity
     {
-        public SituacaoEventoEntity(Guid id, string descricao)
+        public SituacaoEventoEntity()
         {
-            Id = id;
-            Descricao = descricao;
+            Id = new Guid();
         }
 
         public Guid Id { get; private set; }

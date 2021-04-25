@@ -10,7 +10,13 @@ namespace Buffet.Models.Buffet
 {
     public class EventoEntity
     {
-        public Guid Id { get; set; }
+
+        public EventoEntity()
+        {
+            Id = new Guid();
+        }
+
+        public Guid Id { get; private set; }
         public Guid ClienteId { get; set; }
         public SituacaoEventoEntity Situacao { get; set; }
         public TipoEventoEntity Tipo { get; set; }
@@ -23,10 +29,7 @@ namespace Buffet.Models.Buffet
         public string TextoObservacao { get; set; }
         public string Nome { get; set; }
         public ClienteEntity Cliente { get; set; }
-        public EventoEntity()
-        {
-            Id = new Guid();
-        }
+       
 
     }
 }
