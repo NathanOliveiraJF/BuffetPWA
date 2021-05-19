@@ -29,8 +29,8 @@ namespace Buffet.Data
         public DbSet<ConvidadoEntity> Convidados { get; set; }
         public DbSet<SituacaoConvidadoEntity> SituacaoConvidado { get; set; }
 
-        //Local
-        public DbSet<LocalEntity> Local { get; set; }
+        //LocalEntity
+        public DbSet<LocalEntity> LocalEntity { get; set; }
 
         public DataBaseContext(DbContextOptions<DataBaseContext> options)
             : base(options)

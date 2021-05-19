@@ -1,0 +1,70 @@
+﻿@model Buffet.ViewModels.Buffet.Local.EditarLocalViewModel;
+@{
+    ViewData["Title"] = "Editar LocalEntity ";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <p class="card-header">Editar local @Model.Descricao</p>
+                <div class="card-body">
+                    <form Method="post" action="/Local/LocalEdit/@Model.Id">
+                        <div class="form-group">
+                            <label for="descricao">Descricao</label>
+                            <input class="form-control" type="text" name="descricao" id="descricao" value="@Model.Descricao" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="endereco">Endereco</label>
+                            <input class="form-control" type="text" name="endereco" id="endereco" value="@Model.Endereco" />
+                        </div>
+                       
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Editar" />
+                            <a asp-controller="Local" asp-action="Locais" class="btn btn-primary">Voltar</a>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+     <h4>Eventos do Clients</h4>
+        
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Descricao</th>
+                <th scope="col">Tipo do evento</th>
+                <th scope="col">situação do Evento</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            @if (@Model.Eventos.Any())
+            {
+                @foreach (var c in @Model.Eventos)
+                {
+                    <tr>
+                        <td>@c.Descricao</td>
+                        <td>@c.TipoEvento</td>
+                        <td>@c.Situacao</td>
+                        <td>
+                            <a asp-controller="Evento" asp-action="EventoEdit" asp-route-id="@c.Id">Editar</a> |
+                            <a asp-controller="Evento" asp-action="EventoEdit" asp-route-id="@c.Id">Deletar</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <th class="text-center" colspan="6">Não há Eventos cadastrados</th>
+                </tr>
+            }
+    
+            </tbody>
+        </table>
+</div>

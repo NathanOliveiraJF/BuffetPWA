@@ -5,6 +5,7 @@ using Buffet.Models.Buffet;
 using Buffet.Models.Buffet.Cliente;
 using Buffet.Models.Buffet.Convidado;
 using Buffet.Models.Buffet.Evento;
+using Buffet.Models.Buffet.Local;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -53,6 +54,8 @@ namespace Buffet
             services.AddTransient<TipoEventoService>();
             services.AddTransient<SituacaoEventoService>();
             services.AddTransient<SituacaoConvidadoService>();
+            services.AddTransient<LocalService>();
+
 
 
         }

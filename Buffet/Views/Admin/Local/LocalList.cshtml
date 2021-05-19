@@ -1,0 +1,76 @@
+﻿@model Buffet.ViewModels.Buffet.Local.ListLocalViewModel;
+@{
+    ViewData["Title"] = "Lista de Locais";
+}
+
+<div class="container">
+    <h4>Locais</h4>
+    @if (Model.MensagemSucesso != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @Model.MensagemSucesso
+        </div>
+    }
+    @if (Model.MensagemErro != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @Model.MensagemSucesso
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-success" asp-controller="Local" asp-action="Create">Criar Novo Local</a>
+            <a class="btn btn-primary" asp-controller="Admin" asp-action="PanelUser">Voltar</a>
+        </div>
+        
+        <div class="col pt-4">
+            <div class="card">
+                <p class="card-header h4">Filtrar Local Por descricao</p>
+                <div class="card-body">
+                    <form method="post" asp-controller="Client" asp-action="ClientFilter">
+                        <div class="form-group">
+                            <label for="descricao">descricao</label>
+                            <input class="form-control" type="text" name="descricao" id="descricao" />
+                        </div>
+                        <input class="btn btn-primary" type="submit" value="Filtrar" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <h4>Listagem de locais</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Descricao</th>
+                <th scope="col">Endereço</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (@Model.Locais.Any())
+            {
+                @foreach (var local in @Model.Locais)
+                {
+                    <tr>
+                        <td>@local.Descricao</td>
+                        <td>@local.Endereco</td>
+                        <td>
+                            <a asp-controller="Local" asp-action="LocalEdit" asp-route-id="@local.Id">Mostrar/Editar</a> |
+                            <a asp-controller="Local" asp-action="LocalDelete" asp-route-id="@local.Id">Deletar</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <th colspan="4" class="text-center">Não há locais cadastrados</th>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

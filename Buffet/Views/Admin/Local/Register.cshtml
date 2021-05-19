@@ -1,0 +1,35 @@
+﻿@model Buffet.ViewModels.Buffet.Local.CriarLocalViewModel; 
+
+@{
+    ViewData["Title"] = "Cadastro LocalEntity";
+}
+
+<div class="container">
+    @if (Model.MensagemErro != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @Model.MensagemErro
+        </div>
+    }
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <p class="card-header">Cadastro de local</p>
+                <div class="card-body">
+                    <form method="post" asp-controller="Local" asp-action="Create">
+                        <div class="form-group">
+                            <label for="descricao">Descricao</label>
+                            <input class="form-control" type="text" name="descricao" id="descricao" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="endereco">Endereço</label>
+                            <input class="form-control" type="text" name="endereco" id="endereco" />
+                        </div>
+                        <input class="btn btn-primary" type="submit" value="Cadastrar" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

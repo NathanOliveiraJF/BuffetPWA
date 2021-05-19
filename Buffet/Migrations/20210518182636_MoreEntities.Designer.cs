@@ -234,7 +234,7 @@ namespace Buffet.Migrations
                     b.ToTable("Eventos");
                 });
 
-            modelBuilder.Entity("Buffet.Models.Buffet.Local.LocalEntity", b =>
+            modelBuilder.Entity("Buffet.Models.Buffet.LocalEntity.LocalEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -377,7 +377,7 @@ namespace Buffet.Migrations
                         .WithMany("Events")
                         .HasForeignKey("ClienteId");
 
-                    b.HasOne("Buffet.Models.Buffet.Local.LocalEntity", "Local")
+                    b.HasOne("Buffet.Models.Buffet.LocalEntity.LocalEntity", "LocalEntity")
                         .WithMany()
                         .HasForeignKey("LocalId");
 
