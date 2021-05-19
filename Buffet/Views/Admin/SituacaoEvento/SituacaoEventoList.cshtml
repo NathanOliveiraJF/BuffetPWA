@@ -1,0 +1,72 @@
+﻿@model Buffet.ViewModels.Buffet.SituacaoEvento.SituacaoEventoViewModel;
+
+@{
+    ViewData["Title"] = "Lista Situação de Eventos";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <p class="card-header">Cadastro Situação do Evento</p>
+                @if (@Model.MensagemSucesso != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        @Model.MensagemSucesso
+                    </div>
+                }
+                @if (@Model.MensagemErro != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @Model.MensagemErro
+                    </div>
+                }
+                <div class="card-body">
+                    <form method="post" asp-controller="SituacaoEvento" asp-action="Create">
+                        <div class="form-group">
+                            <label for="descricao">descricao</label>
+                            <input class="form-control" type="text" name="descricao" id="descricao" />
+                        </div>
+                        <input class="btn btn-primary" type="submit" value="Cadastrar" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <h4>Tipos de Evento</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Descricao</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (@Model.SituacaoEventos.Any())
+            {
+                var i = 0;
+                @foreach (var tipoEvento in @Model.SituacaoEventos)
+                {
+                    i++;
+                    <tr>
+                        <td>@i</td>
+                        <td>@tipoEvento.Descricao</td>
+                        <td>
+                            <a href="/SituacaoEvento/Edit/@tipoEvento.Id">Mostrar/Editar</a> |
+                            <a href="/SituacaoEvento/Delete/@tipoEvento.Id">Deletar</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <th class="text-center" colspan="3">Não há Situação de Eventos cadastrados</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
