@@ -38,12 +38,48 @@
     <div class="float-left ml-4">
         <div class="list-group   text-center border border-dark rounded-right shadow-lg">
             <div class="bg-dark text-light text-center p-3">Menu</div>
-            <a class="list-group-item list-group-item-actionbtn btn-outline-secondary px-5" asp-area="" asp-controller="Client" asp-action="Register">Cliente</a>
-            <a class="list-group-item list-group-item-actionbtn btn-outline-secondary" asp-area="" asp-controller="Admin" asp-action="Session">Sessao</a>
-            <a class="list-group-item list-group-item-actionbtn btn-outline-secondary" asp-area="" asp-controller="Admin" asp-action="Session">Sessao</a>
-            <a class="list-group-item list-group-item-actionbtn btn-outline-secondary" asp-area="" asp-controller="Admin" asp-action="Session">Sessao</a>
-            <a class="list-group-item list-group-item-actionbtn btn-outline-secondary" asp-area="" asp-controller="Admin" asp-action="Session">Sessao</a>
+            <div class="dropdown">
+                <button class="btn-outline-secondary  dropdown-toggle  list-group-item list-group-item-action px-5 " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Clientes
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Session">Listagem de Clientes</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Client" asp-action="Register">Cadastrar Cliente</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <button class="btn-outline-secondary  dropdown-toggle  list-group-item list-group-item-action px-5 " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Eventos
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Session">Listagem de Eventos</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Session">Cadastrar Evento</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="btn-outline-secondary  dropdown-toggle  list-group-item list-group-item-action px-5 " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Locais
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Session">Listagem de Locais</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Session">Cadastrar Local</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="btn-outline-secondary  dropdown-toggle  list-group-item list-group-item-action px-5 " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Configurações
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" asp-area="" asp-controller="TipoEvento" asp-action="TipoEventos">Tipos de Eventos</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Session">Situações de Eventos</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Session">Situações de Convidados</a>
+                </div>
+            </div>
+
         </div>
+       
     </div>
 
     <div class="container">

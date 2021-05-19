@@ -2,6 +2,7 @@ using Buffet.Data;
 using Buffet.Models.Acesso;
 using Buffet.Models.Acesso.Services;
 using Buffet.Models.Buffet;
+using Buffet.Models.Buffet.Evento;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -47,6 +48,8 @@ namespace Buffet
 
             services.AddTransient<AcessoService>();
             services.AddTransient<ClientService>();
+            services.AddTransient<TipoEventoService>();
+
 
         }
 
