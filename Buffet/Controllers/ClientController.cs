@@ -12,6 +12,8 @@ using Buffet.Models.Buffet;
 using Buffet.RequestModels.Buffet;
 using Buffet.ViewModels.Buffet;
 using Buffet.Models.Buffet.Cliente;
+using Buffet.ViewModels.Buffet.Cliente;
+using Buffet.RequestModels.Buffet.Cliente;
 
 namespace Buffet.Controllers
 {
@@ -29,19 +31,23 @@ namespace Buffet.Controllers
          * Controller to register user.
          */
         [HttpPost]
-        public IActionResult Register(ClienteRegisterRequestModel clientDto)
+        public RedirectToActionResult Create(ClienteRegisterRequestModel clientDto)
         {
             _clientService.ClientRegister(clientDto);
-            TempData["msg-register"] = "Cadastro efeutado com sucesso!";
-            return RedirectToAction("Register");
+            TempData["MensagemSucesso"] = "Cadastro efetuado com sucesso!";
+            return RedirectToAction("Clientes");
         }
 
         [HttpGet]
-        public IActionResult Register()
+        public IActionResult Create()
         {
-            string msg = (string)TempData["msg-register"];
 
-            return View("~/Views/Admin/Client/Register.cshtml", msg);
+            CriarClientViewModel viewModel = new CriarClientViewModel
+            {
+                MensagemErro = (string)TempData["MensagemErro"]
+            };
+            
+            return View("~/Views/Admin/Client/Register.cshtml", viewModel);
         }
 
 
@@ -49,11 +55,14 @@ namespace Buffet.Controllers
          * Controller to return client list
          */
         [HttpGet]
-        public IActionResult ClientList()
+        public IActionResult Clientes()
         {
             var listaDeClient = _clientService.GetAll();
-            ListClientViewModel viewModel = new ListClientViewModel();
-
+            ListClientViewModel viewModel = new ListClientViewModel
+            {
+                MensagemSucesso = (string)TempData["MensagemSucesso"]
+            };
+            
             foreach (ClienteEntity clienteEntity in listaDeClient)
             {
                 viewModel.Clients.Add(new Cliente 
@@ -81,20 +90,40 @@ namespace Buffet.Controllers
         [HttpGet]
         public IActionResult ClientEdit(Guid id)
         {
-            var client = _clientService.GetById(id);
-            ClientViewModel viewModel = new ClientViewModel
+            ClienteEntity client = _clientService.GetById(id);
+            EditarClientViewModel viewModel = new EditarClientViewModel
             {
+                Id = client.Id.ToString(),
                 Nome = client.Nome,
                 Email = client.Email,
                 Endereco = client.Endereco,
                 Cpf = client.Cpf,
                 Cnpj = client.Cnpj,
-                DataNascimento = client.DataNascimento,
+                DataNascimento = client.DataNascimento.ToString("yyyy-MM-dd"),
                 TextoObservacao = client.TextoObservacao,
-                Events = client.Events
             };
 
-            return View("~/Views/Admin/Client", viewModel);
+            foreach (var item in client.Events)
+            {
+                viewModel.Eventos.Add(new Evento
+                {
+                    Id = item.Id.ToString(),
+                    Descricao = item.Descricao,
+                    Local = item.Local.Endereco,
+                    Situacao = item.Situacao.Descricao,
+                    TipoEvento = item.Tipo.Descricao
+                });
+            }
+            return View("~/Views/Admin/Client/ClientEdit.cshtml", viewModel);
+        }
+
+        [HttpPost]
+        public RedirectToActionResult ClientEdit(Guid id, EditClientRequestModel request)
+        {
+            //TODO FAZER TRY COM ERROS QUE VIER DO REQUET
+            _clientService.Edit(id, request);
+            TempData["MensagemSucesso"] = "Cliente editado com sucesso";
+            return RedirectToAction("Clientes");
         }
     }
 }

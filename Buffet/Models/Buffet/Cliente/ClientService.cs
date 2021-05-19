@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Buffet.Data;
 using Microsoft.EntityFrameworkCore;
 using Buffet.RequestModels.Buffet;
+using Buffet.RequestModels.Buffet.Cliente;
 
 namespace Buffet.Models.Buffet.Cliente
 {
@@ -26,7 +27,7 @@ namespace Buffet.Models.Buffet.Cliente
 
         public ClienteEntity GetById(Guid id)
         {
-            ClienteEntity c = _dbContext.Clientes.Find(id);
+            ClienteEntity c = _dbContext.Clientes.Include(x => x.Events).FirstOrDefault(x => x.Id == id);
             
             return c ?? null;
         }
@@ -63,6 +64,23 @@ namespace Buffet.Models.Buffet.Cliente
             _dbContext.Clientes.Add(c);
              _dbContext.SaveChanges();
             
+        }
+
+        public void Edit(Guid id, EditClientRequestModel edit)
+        {
+            //TODO TRATAMENTOS
+            var clienteEntity = _dbContext.Clientes.Find(id);
+            clienteEntity.Nome = edit.Nome;
+            clienteEntity.Cpf = edit.Cpf;
+            clienteEntity.Cnpj = edit.Cnpj;
+            clienteEntity.Email = edit.Email;
+            clienteEntity.Endereco = edit.Endereco;
+            clienteEntity.TextoObservacao = edit.TextoObservacao;
+            clienteEntity.DataNascimento = DateTime.Parse(edit.DataNascimento);
+            clienteEntity.DataModificacao = DateTime.Now;
+
+            _dbContext.Update(clienteEntity);
+            _dbContext.SaveChanges();
         }
         
         

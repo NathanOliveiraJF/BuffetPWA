@@ -1,14 +1,14 @@
-﻿@model string; 
+﻿@model Buffet.ViewModels.Buffet.Cliente.CriarClientViewModel; 
 
 @{
     ViewData["Title"] = "Cadastro Cliente";
 }
 
 <div class="container">
-    @if (Model != null)
+    @if (Model.MensagemErro != null)
     {
-        <div class="alert alert-success" role="alert">
-            @Model
+        <div class="alert alert-danger" role="alert">
+            @Model.MensagemErro
         </div>
     }
     <div class="row">
@@ -16,7 +16,7 @@
             <div class="card">
                 <p class="card-header">Cadastro de cliente</p>
                 <div class="card-body">
-                    <form method="post" asp-controller="Client" asp-action="Register">
+                    <form method="post" asp-controller="Client" asp-action="Create">
                         <div class="form-group">
                             <label for="nome">Nome</label>
                             <input class="form-control" type="text" name="nome" id="nome" />

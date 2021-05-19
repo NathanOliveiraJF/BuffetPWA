@@ -6,7 +6,7 @@ using Buffet.Models.Buffet;
 using Buffet.Models.Buffet.Cliente;
 using Buffet.Models.Buffet.Evento;
 
-namespace Buffet.ViewModels.Buffet
+namespace Buffet.ViewModels.Buffet.Cliente
 {
     public class ClientViewModel
     {

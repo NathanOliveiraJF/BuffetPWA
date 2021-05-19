@@ -1,61 +1,81 @@
-﻿@model Buffet.ViewModels.Buffet.ListClientViewModel;
+﻿@model Buffet.ViewModels.Buffet.Cliente.ListClientViewModel;
 @{
     ViewData["Title"] = "Lista de Cliente";
 }
 
 <div class="container">
     <h4>Clients</h4>
-    <div class="d-flex align-content-lg-start justify-content-between">
-        <p>
-            <a asp-controller="" asp-action="">Criar Novo Cliente</a> |
-            <a asp-controller="Admin" asp-action="PanelUser">Voltar</a>
-        </p>
-        <form  asp-controller="Client" asp-action="ClientFilter" class="mb-2">
-            <div class="input-group">
-                <div class="form-outline">
-                    <input type="search" id="form1" name="descricao" placeholder="Descricao" class="form-control"/>
+    @if (Model.MensagemSucesso != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @Model.MensagemSucesso
+        </div>
+    }
+    @if (Model.MensagemErro != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @Model.MensagemSucesso
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-success" asp-controller="Client" asp-action="Create">Criar Novo Cliente</a>
+            <a class="btn btn-primary" asp-controller="Admin" asp-action="PanelUser">Voltar</a>
+        </div>
+        
+        <div class="col pt-4">
+            <div class="card">
+                <p class="card-header h4">Filtrar Cliente Por Nome</p>
+                <div class="card-body">
+                    <form method="post" asp-controller="Client" asp-action="ClientFilter">
+                        <div class="form-group">
+                            <label for="descricao">descricao</label>
+                            <input class="form-control" type="text" name="descricao" id="descricao" />
+                        </div>
+                        <input class="btn btn-primary" type="submit" value="Cadastrar" />
+                    </form>
                 </div>
-                <button type="submit" style="height:40px" class="btn btn-primary">
-                    Pesquisar
-                </button>
             </div>
-        </form>
+        </div>
     </div>
+    <hr />
+    <h4>Listagem de clientes</h4>
     <table class="table table-striped">
         <thead>
-        <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">Email</th>
-            <th scope="col">Data de Nascimento</th>
-            <th scope="col">Data Inserido</th>
-            <th scope="col">Data Modificado</th>
-            <th>Ações</th>
-        </tr>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">Data de Nascimento</th>
+                <th scope="col">Data Inserido</th>
+                <th scope="col">Data Modificado</th>
+                <th>Ações</th>
+            </tr>
         </thead>
         <tbody>
-        @if (@Model.Clients.Any())
-        {
-            @foreach (var cliente in @Model.Clients)
+            @if (@Model.Clients.Any())
+            {
+                @foreach (var cliente in @Model.Clients)
+                {
+                    <tr>
+                        <td>@cliente.Nome</td>
+                        <td>@cliente.Email</td>
+                        <td>@cliente.DataNascimento</td>
+                        <td>@cliente.DataInserido</td>
+                        <td>@cliente.DataModificacao</td>
+                        <td>
+                            <a asp-controller="Client" asp-action="ClientEdit" asp-route-id="@cliente.Id">Mostrar/Editar</a> |
+                            <a asp-controller="Client" asp-action="ClientEdit" asp-route-id="@cliente.Id">Deletar</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
             {
                 <tr>
-                    <td>@cliente.Nome</td>
-                    <td>@cliente.Email</td>
-                    <td>@cliente.DataNascimento</td>
-                    <td>@cliente.DataInserido</td>
-                    <td>@cliente.DataModificacao</td>
-                    <td>
-                        <a asp-controller="Client" asp-action="ClientEdit" asp-route-id="@cliente.Id">Mostrar/Editar</a> |
-                        <a asp-controller="Client" asp-action="ClientEdit" asp-route-id="@cliente.Id">Deletar</a>
-                    </td>
+                    <th colspan="8" class="text-center">Não há clientes cadastrados</th>
                 </tr>
             }
-        }
-        else
-        {
-            <tr>
-                <th>Não há clientes cadastrados</th>
-            </tr>
-        }
 
         </tbody>
     </table>
