@@ -1,14 +1,14 @@
-﻿@model Buffet.ViewModels.Buffet.SituacaoEvento.SituacaoEventoViewModel;
+﻿@model Buffet.ViewModels.Buffet.SituacaoConvidado.SituacaoConvidadoViewModel;
 
 @{
-    ViewData["Title"] = "Lista Situação de Eventos";
+    ViewData["Title"] = "Lista Situação do convidado";
 }
 
 <div class="container">
     <div class="row">
         <div class="col">
             <div class="card">
-                <p class="card-header">Cadastro Situação do Evento</p>
+                <p class="card-header">Cadastro Situação do convidado</p>
                 @if (@Model.MensagemSucesso != null)
                 {
                     <div class="alert alert-success" role="alert">
@@ -22,7 +22,7 @@
                     </div>
                 }
                 <div class="card-body">
-                    <form method="post" asp-controller="SituacaoEvento" asp-action="Create">
+                    <form method="post" asp-controller="SituacaoConvidado" asp-action="Create">
                         <div class="form-group">
                             <label for="descricao">descricao</label>
                             <input class="form-control" type="text" name="descricao" id="descricao" />
@@ -34,7 +34,7 @@
         </div>
     </div>
     <hr />
-    <h4>Situacao de Eventos</h4>
+    <h4>Situacao do Convidado</h4>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -45,18 +45,18 @@
         </thead>
         <tbody>
 
-            @if (@Model.SituacaoEventos.Any())
+            @if (@Model.SituacaoConvidados.Any())
             {
                 var i = 0;
-                @foreach (var tipoEvento in @Model.SituacaoEventos)
+                @foreach (var situacaoConvidado in @Model.SituacaoConvidados)
                 {
                     i++;
                     <tr>
                         <td>@i</td>
-                        <td>@tipoEvento.Descricao</td>
+                        <td>@situacaoConvidado.Descricao</td>
                         <td>
-                            <a href="/SituacaoEvento/Edit/@tipoEvento.Id">Mostrar/Editar</a> |
-                            <a href="/SituacaoEvento/Delete/@tipoEvento.Id">Deletar</a>
+                            <a href="/SituacaoConvidado/Edit/@situacaoConvidado.Id">Mostrar/Editar</a> |
+                            <a href="/SituacaoConvidado/Delete/@situacaoConvidado.Id">Deletar</a>
                         </td>
                     </tr>
                 }
@@ -64,7 +64,7 @@
             else
             {
                 <tr>
-                    <th class="text-center" colspan="3">Não há Situação de Eventos cadastrados</th>
+                    <th class="text-center" colspan="3">Não há Situação de convidados cadastrados</th>
                 </tr>
             }
         </tbody>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Buffet.Data;
 using Microsoft.EntityFrameworkCore;
 using Buffet.RequestModels.Buffet;
-using Buffet.Models.Buffet.Situacao;
+
 
 namespace Buffet.Models.Buffet.Evento
 {

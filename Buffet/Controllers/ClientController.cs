@@ -11,6 +11,7 @@ using Buffet.Models.Acesso;
 using Buffet.Models.Buffet;
 using Buffet.RequestModels.Buffet;
 using Buffet.ViewModels.Buffet;
+using Buffet.Models.Buffet.Cliente;
 
 namespace Buffet.Controllers
 {

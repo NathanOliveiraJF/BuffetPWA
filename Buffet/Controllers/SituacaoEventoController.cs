@@ -13,7 +13,7 @@ using Buffet.RequestModels.Buffet;
 using Buffet.ViewModels.Buffet;
 using Buffet.Models.Buffet.Evento;
 using Buffet.ViewModels.Buffet.SituacaoEvento;
-using Buffet.ViewModels.Buffet.SituacaoEvento;
+
 
 namespace Buffet.Controllers
 {

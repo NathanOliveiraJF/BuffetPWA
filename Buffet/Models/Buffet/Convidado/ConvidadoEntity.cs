@@ -1,4 +1,4 @@
-﻿using Buffet.Models.Buffet.Situacao;
+﻿using Buffet.Models.Buffet.Evento;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -7,7 +7,7 @@ using Buffet.Data;
 using Microsoft.EntityFrameworkCore;
 using Buffet.RequestModels.Buffet;
 
-namespace Buffet.Models.Buffet
+namespace Buffet.Models.Buffet.Cliente
 {
     public class ClientService
     {

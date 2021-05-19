@@ -1,12 +1,13 @@
-﻿using Buffet.Models.Buffet.Evento;
+﻿using Buffet.Models.Buffet.Cliente;
+using Buffet.Models.Buffet.Evento;
 using Buffet.Models.Buffet.Local;
-using Buffet.Models.Buffet.Situacao;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Buffet.Models.Buffet
+namespace Buffet.Models.Buffet.Evento
 {
     public class EventoEntity
     {

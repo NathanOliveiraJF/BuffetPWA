@@ -1,10 +1,11 @@
 ﻿using Buffet.Models.Buffet.Cliente;
+using Buffet.Models.Buffet.Evento;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Buffet.Models.Buffet
+namespace Buffet.Models.Buffet.Cliente
 {
     public class ClienteEntity
     {

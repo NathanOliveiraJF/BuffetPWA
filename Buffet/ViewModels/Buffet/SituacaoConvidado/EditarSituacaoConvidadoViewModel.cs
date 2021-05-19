@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 using Buffet.Models.Buffet;
 using Buffet.Models.Buffet.Evento;
 
-
-namespace Buffet.ViewModels.Buffet.SituacaoEvento
+namespace Buffet.ViewModels.Buffet.SituacaoConvidado
 {
-    public class SituacaoEventoViewModel
+    public class EditarSituacaoConvidadoViewModel
     {
         public string MensagemSucesso { get; set; }
         public string MensagemErro { get; set; }
-        public ICollection<SituacaoEventoEntity> SituacaoEventos { get; set; }
+        public string Descricao { get; set; }
+        public string Id { get; set; }
     }
 }
