@@ -17,7 +17,7 @@
                 }
                 @if (@Model.MensagemErro != null)
                 {
-                    <div class="alert alert-success" role="alert">
+                    <div class="alert alert-danger" role="alert">
                         @Model.MensagemErro
                     </div>
                 }
@@ -56,7 +56,7 @@
                         <td>@tipoEvento.Descricao</td>
                         <td>
                             <a href="/TipoEvento/Edit/@tipoEvento.Id">Mostrar/Editar</a> |
-                            <a asp-controller="Client" asp-action="ClientEdit" asp-route-id="@tipoEvento.Id">Deletar</a>
+                            <a href="/TipoEvento/Delete/@tipoEvento.Id">Deletar</a>
                         </td>
                     </tr>
                 }

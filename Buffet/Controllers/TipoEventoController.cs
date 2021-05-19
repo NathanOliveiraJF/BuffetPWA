@@ -41,7 +41,7 @@ namespace Buffet.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(string descricao)
+        public RedirectToActionResult Create(string descricao)
         {
             _tipoEventoService.Create(descricao);
             TempData["formMensagemSucesso"] = "Tipo Evento criado com sucesso!";
@@ -63,15 +63,38 @@ namespace Buffet.Controllers
             return View("~/Views/Admin/TipoEvento/Edit.cshtml", viewModel);
         }
 
-
         [HttpPost]
-        public IActionResult Edit(Guid id, string descricao)
+        public RedirectToActionResult Edit(Guid id, string descricao)
         {
             //TODO: TRATAR ERROS
             _tipoEventoService.Edit(id, descricao);
             TempData["formMensagemSucesso"] = "Tipo evento editado com sucesso!";
             return RedirectToAction("TipoEventos");
+        }
 
+        [HttpGet]
+        public IActionResult Delete(Guid id)
+        {
+            //TODO: TRATAR ERROS
+
+            var tipoEvento = _tipoEventoService.GetById(id);
+            var viewModel = new DeleteTipoEventoViewModel
+            {
+                Id = tipoEvento.Id.ToString(),
+                Descricao = tipoEvento.Descricao,
+            };
+
+            return View("~/Views/Admin/TipoEvento/Delete.cshtml", viewModel);
+
+        }
+
+        [HttpPost]
+        public RedirectToActionResult DeleteIt(Guid id)
+        {
+            //TODO: TRATAR ERROS
+            _tipoEventoService.Remove(id);
+            TempData["formMensagemSucesso"] = "Tipo evento deletado com sucesso!";
+            return RedirectToAction("TipoEventos");
         }
 
     }
