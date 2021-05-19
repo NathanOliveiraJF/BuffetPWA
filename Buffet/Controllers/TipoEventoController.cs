@@ -49,5 +49,30 @@ namespace Buffet.Controllers
         }
 
 
+        [HttpGet]
+        public IActionResult Edit(Guid id)
+        {
+
+            var tipoEvento = _tipoEventoService.GetById(id);
+            var viewModel = new EditarTipoEventoViewModel
+            {
+                Id = tipoEvento.Id.ToString(),
+                Descricao = tipoEvento.Descricao,
+                MensagemSucesso = (string)TempData["formMensagemSucesso"]
+            };
+            return View("~/Views/Admin/TipoEvento/Edit.cshtml", viewModel);
+        }
+
+
+        [HttpPost]
+        public IActionResult Edit(Guid id, string descricao)
+        {
+            //TODO: TRATAR ERROS
+            _tipoEventoService.Edit(id, descricao);
+            TempData["formMensagemSucesso"] = "Tipo evento editado com sucesso!";
+            return RedirectToAction("TipoEventos");
+
+        }
+
     }
 }

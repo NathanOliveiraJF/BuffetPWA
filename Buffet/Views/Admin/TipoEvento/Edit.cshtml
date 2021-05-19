@@ -1,0 +1,34 @@
+﻿@model Buffet.ViewModels.Buffet.TipoEvento.EditarTipoEventoViewModel;
+
+@{
+    ViewData["Title"] = "Lista de Tipos de Evento";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <p class="card-header">Cadastro de Tipos de Eventos</p>
+                <div class="card-body">
+                    <form action="/TipoEvento/Edit/@Model.Id" method="post">
+                        <div class="form-group">
+                            <label for="codigo">Código do evento</label>
+                            <input class="form-control" type="text" id="codigo" value="@Model.Id" disabled />
+                        </div>
+                        <div class="form-group">
+                            <label for="descricao">descricao</label>
+                            <input class="form-control" type="text" name="descricao" id="descricao" value="@Model.Descricao" />
+                        </div>
+
+                        <div class="form-group">
+                            <input class="btn btn-success" type="submit" value="Editar" />
+                            <a class="btn btn-primary" href="/TipoEvento/TipoEventos" >Voltar</a>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

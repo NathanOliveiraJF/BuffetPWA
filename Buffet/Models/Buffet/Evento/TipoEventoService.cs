@@ -46,8 +46,9 @@ namespace Buffet.Models.Buffet.Evento
             _dbContext.SaveChanges();
         }
 
-        public void Editar(Guid id, string descricao)
+        public void Edit(Guid id, string descricao)
         {
+            //TODO: CRIAR VALIDACAO
             TipoEventoEntity tipoEvento = GetById(id);
             tipoEvento.Descricao = descricao;
             _dbContext.TipoEvento.Update(tipoEvento);

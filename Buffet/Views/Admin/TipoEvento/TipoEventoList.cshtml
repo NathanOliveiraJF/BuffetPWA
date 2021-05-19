@@ -55,7 +55,7 @@
                         <td>@i</td>
                         <td>@tipoEvento.Descricao</td>
                         <td>
-                            <a asp-controller="Client" asp-action="ClientEdit" asp-route-id="@tipoEvento.Id">Mostrar/Editar</a> |
+                            <a href="/TipoEvento/Edit/@tipoEvento.Id">Mostrar/Editar</a> |
                             <a asp-controller="Client" asp-action="ClientEdit" asp-route-id="@tipoEvento.Id">Deletar</a>
                         </td>
                     </tr>
