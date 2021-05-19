@@ -79,10 +79,16 @@ namespace Buffet.Models.Buffet.Cliente
             clienteEntity.DataNascimento = DateTime.Parse(edit.DataNascimento);
             clienteEntity.DataModificacao = DateTime.Now;
 
-            _dbContext.Update(clienteEntity);
+            _dbContext.Clientes.Update(clienteEntity);
             _dbContext.SaveChanges();
         }
         
-        
+        public void Delete(Guid id)
+        {
+            //TODO TRATAMENTOS
+            ClienteEntity c = _dbContext.Clientes.Find(id);
+            _dbContext.Remove(c);
+            _dbContext.SaveChanges();
+        }   
     }
 }

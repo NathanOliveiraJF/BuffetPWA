@@ -1,0 +1,60 @@
+﻿@model Buffet.ViewModels.Buffet.Cliente.DeletarClientViewModel; 
+
+@{
+    ViewData["Title"] = "Deletar Cliente";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <p class="card-header">Deletar cliente @Model.Nome</p>
+                <div class="card-body">
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Atenção:</strong> Essa operação não pode ser desfeita!
+                    </div>
+                    <form Method="post" action="/Client/ClientDeleteIt/@Model.Id">
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input class="form-control" type="text" name="nome" id="nome" value="@Model.Nome" readonly />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input class="form-control" type="text" name="email" id="email" value="@Model.Email"  readonly/>
+                        </div>
+                        @if (Model.Cpf != "")
+                        {
+                            <div class="form-group">
+                                <label for="cpf">Cpf</label>
+                                <input class="form-control" type="text" name="cpf" id="cpf" value="@Model.Cpf"  readonly/>
+                            </div>
+                        }
+
+                        <div class="form-group">
+                            <label for="endereco">Endereço</label>
+                            <input class="form-control" type="text" name="endereco" id="endereco" value="@Model.Endereco"  readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label for="dataNascimento">Data de nascimento</label>
+                            <input class="form-control" type="date" name="dataNascimento" id="dataNascimento" value="@Model.DataNascimento" readonly />
+                        </div>
+                        @if (Model.Cnpj != "")
+                        {
+                            <div class="form-group">
+                                <label for="cnpj">Cnpj</label>
+                                <input class="form-control" type="text" name="cnpj" id="cnpj" value="@Model.Cnpj"  readonly />
+                            </div>
+                        }
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Deletar" />
+                            <a asp-controller="Client" asp-action="Clientes" class="btn btn-primary">Voltar</a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

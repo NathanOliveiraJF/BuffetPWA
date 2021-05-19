@@ -125,5 +125,39 @@ namespace Buffet.Controllers
             TempData["MensagemSucesso"] = "Cliente editado com sucesso";
             return RedirectToAction("Clientes");
         }
+
+        [HttpGet]
+        public IActionResult ClientDelete(Guid id)
+        {
+            ClienteEntity cliente = _clientService.GetById(id);
+            if(cliente.Events.Count > 0)
+            {
+                TempData["MensagemErro"] = "Não é possível deletar(cliente possui eventos) deletar eles primeiro.";
+                return RedirectToAction("Clientes");
+            }
+
+            DeletarClientViewModel viewModel = new DeletarClientViewModel
+            {
+                Id = cliente.Id.ToString(),
+                Email = cliente.Email,
+                Cpf = cliente.Cpf,
+                Cnpj = cliente.Cnpj,
+                Nome = cliente.Nome,
+                Endereco = cliente.Endereco,
+                DataNascimento = cliente.DataNascimento.ToString("yyyy-MM-dd")
+            };
+
+            return View("~/Views/Admin/Client/ClientDelete.cshtml", viewModel);
+        }
+
+        [HttpPost]
+        public RedirectToActionResult ClientDeleteIt(Guid id)
+        {
+            //TODO FAZER TRATAMENTOS
+            _clientService.Delete(id);
+
+            TempData["MensagemSucesso"] = "Cliente deletado com sucesso!";
+            return RedirectToAction("Clientes");
+        }
     }
 }
