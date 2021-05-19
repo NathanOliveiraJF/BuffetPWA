@@ -1,0 +1,90 @@
+﻿@model Buffet.ViewModels.Buffet.ClientViewModel;
+@{
+    ViewData["Title"] = "Editar Cliente ";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <p class="card-header">Editar de cliente @Model.Nome</p>
+                <div class="card-body">
+                    <form Method="post" action="/Client/ClientEdit">
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input class="form-control" type="text" name="nome" id="nome" value="@Model.Nome"/>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input class="form-control" type="text" name="email" id="email"  value="@Model.Email"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cpf">Cpf</label>
+                            <input class="form-control" type="text" name="cpf" id="cpf" value="@Model.Cpf"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="endereco">Endereço</label>
+                            <input class="form-control" type="text" name="endereco" id="endereco"  value="@Model.Endereco" />
+                        </div>
+                        <div class="form-group">
+                            <label for="dataNascimento">Data de nascimento</label>
+                            <input class="form-control" type="date" name="dataNascimento" id="dataNascimento" value="@Model.DataNascimento.ToLongDateString()"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cnpj">Cnpj</label>
+                            <input class="form-control" type="date" name="cnpj" id="cnpj"  value="@Model.Cnpj"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="textoObservacao">Texto de obervação</label>
+                            <textarea class="form-control" id="textoObservacao" name="textoObservacao"  value="@Model.TextoObservacao"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+     <h4>Eventos do Clients</h4>
+        
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Descricao</th>
+                <th scope="col">Nome do cliente</th>
+                <th scope="col">Tipo do evento</th>
+                <th scope="col">situação do Evento</th>
+                <th scope="col">Local</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            @if (@Model.Clients.Any())
+            {
+                @foreach (var c in @Model.Events)
+                {
+                    <tr>
+                        <td>@c.Descricao</td>
+                        <td>@c.Cliente.Nome</td>
+                        <td>@c.Tipo.Descricao</td>
+                        <td>@c.Situacao.Descricao</td>
+                        <td>@c.Local</td>
+                        <td>
+                            <a asp-controller="Client" asp-action="ClientEdit" asp-route-id="@c.Id">Editar</a> |
+                            <a asp-controller="Client" asp-action="ClientEdit" asp-route-id="@c.Id">Deletar</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <th>Não há Eventos cadastrados</th>
+                </tr>
+            }
+    
+            </tbody>
+        </table>
+</div>

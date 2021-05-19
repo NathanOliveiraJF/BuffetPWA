@@ -7,10 +7,9 @@ namespace Buffet.Models.Buffet.Evento
 {
     public class TipoEventoEntity
     {
-        public TipoEventoEntity(Guid id, string descricao)
+        public TipoEventoEntity()
         {
-            Id = id;
-            Descricao = descricao;
+            Id = new Guid();
         }
 
         public Guid Id { get; private set; }

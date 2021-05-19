@@ -1,6 +1,7 @@
 using Buffet.Data;
 using Buffet.Models.Acesso;
 using Buffet.Models.Acesso.Services;
+using Buffet.Models.Buffet;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -45,6 +46,8 @@ namespace Buffet
             });
 
             services.AddTransient<AcessoService>();
+            services.AddTransient<ClientService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

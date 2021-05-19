@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace Buffet.ViewModels
 {
-    public class LoginViewModel
+    public class UserViewModel
     {
-        public string Mensagem { get; set; }
-        public string ErrorLogin { get; set; }
         public string Email { get; set; }
+        
     }
 }

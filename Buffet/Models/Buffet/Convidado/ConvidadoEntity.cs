@@ -14,15 +14,17 @@ namespace Buffet.Models.Buffet.Convidado
         }
 
         public Guid Id { get; private set; }
-        public Guid EventoId { get; set; }
+        public EventoEntity Evento { get; set; }
+        public SituacaoConvidadoEntity Situacao { get; set; }
         public string Nome { get; set; }
         public string Email { get; set; }
         public string Cpf { get; set; }
+        public string TextoObservacao { get; set; }
         public DateTime DataNascimento { get; set; }
         public DateTime DataInserido { get; set; }
         public DateTime DataModificacao { get; set; }
-        public SituacaoConvidadoEntity Situacao { get; set; }
-        public string TextoObservacao { get; set; }
+     
+     
 
     }
 }

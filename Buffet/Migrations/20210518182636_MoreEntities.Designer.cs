@@ -3,14 +3,16 @@ using System;
 using Buffet.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Buffet.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210518182636_MoreEntities")]
+    partial class MoreEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,21 +111,75 @@ namespace Buffet.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Buffet.Models.Buffet.Cliente.TipoClienteEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TipoCliente");
+                });
+
             modelBuilder.Entity("Buffet.Models.Buffet.ClienteEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("Cnpj")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Cpf")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime>("DataInserido")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DataModificacao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("Email")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Endereco")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Nome")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<string>("TextoObservacao")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<Guid?>("TipoId")
+                        .HasColumnType("char(36)");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("TipoId");
+
                     b.ToTable("Clientes");
+                });
+
+            modelBuilder.Entity("Buffet.Models.Buffet.Evento.TipoEventoEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TipoEvento");
                 });
 
             modelBuilder.Entity("Buffet.Models.Buffet.EventoEntity", b =>
@@ -135,14 +191,78 @@ namespace Buffet.Migrations
                     b.Property<Guid?>("ClienteId")
                         .HasColumnType("char(36)");
 
+                    b.Property<DateTime>("DataInicio")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DataInserido")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DataModificacao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DataTermino")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<Guid?>("LocalId")
+                        .HasColumnType("char(36)");
+
                     b.Property<string>("Nome")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<Guid?>("SituacaoId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("TextoObservacao")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<Guid?>("TipoId")
+                        .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ClienteId");
 
-                    b.ToTable("EventoEntity");
+                    b.HasIndex("LocalId");
+
+                    b.HasIndex("SituacaoId");
+
+                    b.HasIndex("TipoId");
+
+                    b.ToTable("Eventos");
+                });
+
+            modelBuilder.Entity("Buffet.Models.Buffet.Local.LocalEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Endereco")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LocalEntity");
+                });
+
+            modelBuilder.Entity("Buffet.Models.Buffet.Situacao.SituacaoEventoEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SituacaoEvento");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -244,11 +364,30 @@ namespace Buffet.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Buffet.Models.Buffet.ClienteEntity", b =>
+                {
+                    b.HasOne("Buffet.Models.Buffet.Cliente.TipoClienteEntity", "Tipo")
+                        .WithMany()
+                        .HasForeignKey("TipoId");
+                });
+
             modelBuilder.Entity("Buffet.Models.Buffet.EventoEntity", b =>
                 {
                     b.HasOne("Buffet.Models.Buffet.ClienteEntity", "Cliente")
-                        .WithMany("Eventos")
+                        .WithMany("Events")
                         .HasForeignKey("ClienteId");
+
+                    b.HasOne("Buffet.Models.Buffet.Local.LocalEntity", "Local")
+                        .WithMany()
+                        .HasForeignKey("LocalId");
+
+                    b.HasOne("Buffet.Models.Buffet.Situacao.SituacaoEventoEntity", "Situacao")
+                        .WithMany()
+                        .HasForeignKey("SituacaoId");
+
+                    b.HasOne("Buffet.Models.Buffet.Evento.TipoEventoEntity", "Tipo")
+                        .WithMany()
+                        .HasForeignKey("TipoId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

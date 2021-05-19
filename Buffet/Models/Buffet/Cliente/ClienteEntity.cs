@@ -19,6 +19,7 @@ namespace Buffet.Models.Buffet
         public string TextoObservacao { get; set; }
         public DateTime DataInserido { get; set; }
         public DateTime DataModificacao { get; set; }
+        public List<EventoEntity> Events { get; set; } = new List<EventoEntity>();
     
         public ClienteEntity()
         {

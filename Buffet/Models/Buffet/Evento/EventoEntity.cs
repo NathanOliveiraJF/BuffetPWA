@@ -17,7 +17,7 @@ namespace Buffet.Models.Buffet
         }
 
         public Guid Id { get; private set; }
-        public Guid ClienteId { get; set; }
+        public ClienteEntity Cliente { get; set; }
         public SituacaoEventoEntity Situacao { get; set; }
         public TipoEventoEntity Tipo { get; set; }
         public LocalEntity Local { get; set; }
@@ -28,7 +28,7 @@ namespace Buffet.Models.Buffet
         public DateTime DataModificacao { get; set; }
         public string TextoObservacao { get; set; }
         public string Nome { get; set; }
-        public ClienteEntity Cliente { get; set; }
+      
        
 
     }

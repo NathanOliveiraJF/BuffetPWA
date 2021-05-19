@@ -40,10 +40,7 @@ namespace Buffet.Controllers
         //    return View();
         //}
 
-        public IActionResult Recovery()
-        {
-            return View();
-        }
+        
 
     }
 }

@@ -15,4 +15,8 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Admin\Client\Register.cshtml" />
+  </ItemGroup>
+
 </Project>

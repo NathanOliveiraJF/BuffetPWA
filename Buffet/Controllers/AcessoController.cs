@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Buffet.Models.Acesso;
 
 namespace Buffet.Controllers
 {
@@ -19,6 +20,11 @@ namespace Buffet.Controllers
         {
             _acessoService = acessoService;
         }
+        
+        public IActionResult Recovery()
+        {
+            return View();
+        }
 
         [HttpGet]
         public IActionResult Login()
@@ -26,7 +32,6 @@ namespace Buffet.Controllers
             var viewModel = new LoginViewModel();
             viewModel.ErrorLogin = (string)TempData["error-login"];
             viewModel.Mensagem = (string)TempData["msg-login"];
-
             return View(viewModel);
         }
 
@@ -42,8 +47,9 @@ namespace Buffet.Controllers
             try
             {
                 await _acessoService.UserAuthentication(request.Email, request.Senha);
+               
                 return Redirect("/Admin/Index");
-
+                
 
             }
             catch (Exception ex)

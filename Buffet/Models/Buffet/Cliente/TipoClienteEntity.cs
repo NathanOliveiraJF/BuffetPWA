@@ -7,10 +7,9 @@ namespace Buffet.Models.Buffet.Cliente
 {
     public class TipoClienteEntity
     {
-        public TipoClienteEntity(Guid id, string descricao)
+        public TipoClienteEntity()
         {
-            Id = id;
-            Descricao = descricao;
+            Id = new Guid();
         }
 
         public Guid Id { get; private set; }
