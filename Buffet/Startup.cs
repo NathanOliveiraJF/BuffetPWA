@@ -55,6 +55,9 @@ namespace Buffet
             services.AddTransient<SituacaoEventoService>();
             services.AddTransient<SituacaoConvidadoService>();
             services.AddTransient<LocalService>();
+            services.AddTransient<EventoService>();
+            services.AddTransient<ConvidadoService>();
+
 
 
 

@@ -17,6 +17,7 @@ using Buffet.ViewModels.Buffet;
 using Buffet.Models.Buffet.Local;
 using Buffet.RequestModels.Buffet.Local;
 using Buffet.ViewModels.Buffet.Local;
+using Buffet.Models.Buffet.Evento;
 
 namespace Buffet.Controllers
 {
@@ -24,10 +25,12 @@ namespace Buffet.Controllers
     {
 
         private readonly LocalService _localService;
+        private readonly EventoService _eventoService;
 
-        public LocalController(LocalService localService)
+        public LocalController(LocalService localService, EventoService eventoService)
         {
             _localService = localService;
+            _eventoService = eventoService;
         }
         
         /**
@@ -90,6 +93,7 @@ namespace Buffet.Controllers
         public IActionResult LocalEdit(Guid id)
         {
             LocalEntity local = _localService.GetById(id);
+            List<EventoEntity> ev = _eventoService.GetAll().Where(x => x.Local.Id == id).ToList();
             EditarLocalViewModel viewModel = new EditarLocalViewModel
             {
                 Id = local.Id.ToString(),
@@ -97,7 +101,7 @@ namespace Buffet.Controllers
                 Descricao = local.Descricao
             };
 
-            foreach (var item in local.Events)
+            foreach (var item in ev)
             {
                 viewModel.Eventos.Add(new Evento
                 {

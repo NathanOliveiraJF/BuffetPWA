@@ -21,13 +21,13 @@ namespace Buffet.Models.Buffet.Cliente
 
         public IEnumerable<ClienteEntity> GetAll()
         {
-            return _dbContext.Clientes
-            .Include(x => x.Events);
+            return _dbContext.Clientes;
         }
 
         public ClienteEntity GetById(Guid id)
         {
-            ClienteEntity c = _dbContext.Clientes.Include(x => x.Events).FirstOrDefault(x => x.Id == id);
+            ClienteEntity c = _dbContext.Clientes
+                .FirstOrDefault(x => x.Id == id);
             
             return c ?? null;
         }

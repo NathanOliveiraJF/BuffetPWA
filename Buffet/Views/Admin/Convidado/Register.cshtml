@@ -1,0 +1,69 @@
+﻿@model Buffet.ViewModels.Buffet.Convidado.CriarConvidadoViewModelEvento; 
+
+@{
+    ViewData["Title"] = "Cadastro Convidado";
+}
+
+<div class="container">
+    @if (Model.MensagemErro != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @Model.MensagemErro
+        </div>
+    }
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <p class="card-header">Cadastro de evento</p>
+                <div class="card-body">
+                    <form method="post" asp-controller="Evento" asp-action="CreateConvidado">
+
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input class="form-control" type="text" name="nome" id="nome" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nome">Evento Selecionado</label>
+                            <input class="form-control" value="@Model.Evento.Descricao" type="text" name="evento" id="evento" readonly />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="situacaoConvidado">Situacao Convidado</label>
+                            <select name="situacaoConvidado" id="situacaoConvidado">
+                                @foreach (var item in Model.Situacao)
+                                {
+                                    <option value="@item.Id">@item.Descricao</option>
+                                }
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input class="form-control" type="email" name="email" id="email" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cpf">Cpf</label>
+                            <input class="form-control" type="text" name="cpf" id="cpf" />
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="dataNascimento">Data de nascimento</label>
+                            <input class="form-control" type="date" name="dataNascimento" id="dataNascimento" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="textoObservacao">Texto de obervação</label>
+                            <textarea class="form-control" id="textoObservacao" name="textoObservacao"></textarea>
+                        </div>
+                        <input class="btn btn-primary" type="submit" value="Cadastrar" />
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+﻿@model Buffet.ViewModels.Buffet.Evento.EditarEventoViewModel;
+@{
+    ViewData["Title"] = "Editar Evento ";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <p class="card-header">Editar evento @Model.Nome</p>
+                <div class="card-body">
+                    <form Method="post" action="/Evento/EventoEdit/@Model.Id">
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input class="form-control" type="text" name="nome" id="nome" value="@Model.Nome" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descricao">descricao</label>
+                            <input class="form-control" type="text" name="descricao" id="descricao" value="@Model.Descricao" />
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Editar" />
+                            <a asp-controller="Evento" asp-action="Eventos" class="btn btn-primary">Voltar</a>
+                        </div>
+                        <div class="form-group">
+                            <a class="btn btn-success"  href="/Evento/CreateConvidado/@Model.Id" >Criar Convidado</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+     <h4>Convidados</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Cpf</th>
+                    <th scope="col">Data de Nascimento</th>
+                    <th scope="col">Data Inserido</th>
+                    <th scope="col">Data Modificado</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+            @if (@Model.Convidados.Any())
+            {
+                @foreach (var c in @Model.Convidados)
+                {
+                    <tr>
+                        <td>@c.Nome</td>
+                        <td>@c.Email</td>
+                        <td>@c.Cpf</td>
+                        <td>@c.DataNascimento</td>
+                        <td>@c.DataInserido</td>
+                        <td>@c.DataModificacao</td>
+                        <td>
+                            <a asp-controller="Convidado" asp-action="ConvidadoEdit" asp-route-id="@c.Id">Editar</a> |
+                            <a asp-controller="Convidado" asp-action="ConvidadoDelete" asp-route-id="@c.Id">Deletar</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <th class="text-center" colspan="6">Não há Convidados cadastrados</th>
+                </tr>
+            }
+    
+            </tbody>
+        </table>
+</div>

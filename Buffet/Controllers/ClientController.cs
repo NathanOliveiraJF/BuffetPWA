@@ -14,6 +14,7 @@ using Buffet.ViewModels.Buffet;
 using Buffet.Models.Buffet.Cliente;
 using Buffet.ViewModels.Buffet.Cliente;
 using Buffet.RequestModels.Buffet.Cliente;
+using Buffet.Models.Buffet.Evento;
 
 namespace Buffet.Controllers
 {
@@ -21,10 +22,12 @@ namespace Buffet.Controllers
     {
 
         private readonly ClientService _clientService;
+        private readonly EventoService _eventoService;
 
-        public ClientController(ClientService clientService)
+        public ClientController(ClientService clientService, EventoService eventoService)
         {
             _clientService = clientService;
+            _eventoService = eventoService;
         }
         
         /**
@@ -91,6 +94,8 @@ namespace Buffet.Controllers
         public IActionResult ClientEdit(Guid id)
         {
             ClienteEntity client = _clientService.GetById(id);
+            List<EventoEntity> ev = _eventoService.GetAll().Where(x => x.Cliente.Id == id).ToList();
+           // EventoEntity eventto = _eventoService.
             EditarClientViewModel viewModel = new EditarClientViewModel
             {
                 Id = client.Id.ToString(),
@@ -103,7 +108,7 @@ namespace Buffet.Controllers
                 TextoObservacao = client.TextoObservacao,
             };
 
-            foreach (var item in client.Events)
+            foreach (var item in ev)
             {
                 viewModel.Eventos.Add(new Evento
                 {
@@ -130,7 +135,7 @@ namespace Buffet.Controllers
         public IActionResult ClientDelete(Guid id)
         {
             ClienteEntity cliente = _clientService.GetById(id);
-            if(cliente.Events.Count > 0)
+            if(cliente.Eventos.Count > 0)
             {
                 TempData["MensagemErro"] = "Não é possível deletar(cliente possui eventos) deletar eles primeiro.";
                 return RedirectToAction("Clientes");

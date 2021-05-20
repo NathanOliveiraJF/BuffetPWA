@@ -19,7 +19,12 @@ namespace Buffet.ViewModels.Buffet.Cliente
         public string Cnpj { get; set; }
         public string TextoObservacao { get; set; }
 
-        public ICollection<Evento> Eventos { get; set; } = new List<Evento>();
+        public ICollection<Evento> Eventos { get; set; }
+
+        public EditarClientViewModel()
+        {
+            Eventos = new List<Evento>();
+        }
     }
 
     public class Evento
